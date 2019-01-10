@@ -3,6 +3,7 @@ plugins {
     jacoco
     id("org.springframework.boot") version "2.1.1.RELEASE"
     id("io.spring.dependency-management") version "1.0.6.RELEASE"
+    id("org.sonarqube") version "2.6.2"
 }
 
 repositories {
@@ -15,6 +16,12 @@ group = "cz.chalupa.zonky"
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+sonarqube {
+    properties {
+        property("sonar.coverage.exclusions", "**/*Application.java")
+    }
 }
 
 dependencyManagement {
