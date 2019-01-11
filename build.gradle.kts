@@ -37,7 +37,11 @@ dependencies {
     annotationProcessor(group = "org.projectlombok", name = "lombok")
     compileOnly(group = "org.projectlombok", name = "lombok")
 
-    implementation(group = "org.springframework.boot", name = "spring-boot-starter")
+    implementation(group = "org.springframework.boot", name = "spring-boot-starter-web") {
+        exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
+    }
+    implementation(group = "org.springframework.boot", name = "spring-boot-starter-undertow")
+
     implementation(group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310")
     implementation(group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8")
     implementation(group = "com.squareup.retrofit2", name = "retrofit", version = retrofit2Version)
@@ -52,9 +56,8 @@ dependencies {
     testImplementation(group = "org.mockito", name = "mockito-core")
     testImplementation(group = "org.mockito", name = "mockito-junit-jupiter")
     testImplementation(group = "org.assertj", name = "assertj-core")
-    testImplementation(group = "net.jadler", name = "jadler-all", version = "1.3.0")
-    // needed to force jetty8 for jadler
-    testImplementation(group = "org.eclipse.jetty.aggregate", name = "jetty-all-server", version = "8.1.11.v20130520")
+    testImplementation(group = "net.jadler", name = "jadler-core", version = "1.3.0")
+    testImplementation(group = "net.jadler", name = "jadler-jdk", version = "1.3.0")
 
     testRuntimeOnly(group = "org.junit.vintage", name = "junit-vintage-engine")
     testRuntimeOnly(group = "org.junit.jupiter", name = "junit-jupiter-engine")
