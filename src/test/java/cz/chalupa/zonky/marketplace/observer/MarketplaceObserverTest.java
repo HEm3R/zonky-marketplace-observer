@@ -8,6 +8,7 @@ import cz.chalupa.zonky.marketplace.observer.client.ZonkyLoanDTO;
 import cz.chalupa.zonky.marketplace.observer.client.ZonkyMarketplaceApi;
 import cz.chalupa.zonky.marketplace.observer.client.ZonkyRetrofitClient;
 import cz.chalupa.zonky.marketplace.observer.handlers.ObservationHandler;
+import net.jadler.stubbing.server.jdk.JdkStubHttpServer;
 import okhttp3.Headers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 import static net.jadler.Jadler.closeJadler;
-import static net.jadler.Jadler.initJadler;
+import static net.jadler.Jadler.initJadlerUsing;
 import static net.jadler.Jadler.onRequest;
 import static net.jadler.Jadler.port;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -190,7 +191,7 @@ class MarketplaceObserverTest {
 
         @BeforeEach
         void setUp() {
-            initJadler();
+            initJadlerUsing(new JdkStubHttpServer());
             api = ZonkyRetrofitClient.builder().baseUrl("http://localhost:" + port()).build().createMarketplaceApi();
         }
 
