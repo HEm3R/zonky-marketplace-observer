@@ -31,10 +31,17 @@ dependencyManagement {
 }
 
 dependencies {
+
+    val retrofit2Version = "2.5.0"
+
     annotationProcessor(group = "org.projectlombok", name = "lombok")
     compileOnly(group = "org.projectlombok", name = "lombok")
 
     implementation(group = "org.springframework.boot", name = "spring-boot-starter")
+    implementation(group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310")
+    implementation(group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8")
+    implementation(group = "com.squareup.retrofit2", name = "retrofit", version = retrofit2Version)
+    implementation(group = "com.squareup.retrofit2", name = "converter-jackson", version = retrofit2Version)
 
     testAnnotationProcessor(group = "org.projectlombok", name = "lombok")
     testCompileOnly(group = "org.projectlombok", name = "lombok")
@@ -45,6 +52,9 @@ dependencies {
     testImplementation(group = "org.mockito", name = "mockito-core")
     testImplementation(group = "org.mockito", name = "mockito-junit-jupiter")
     testImplementation(group = "org.assertj", name = "assertj-core")
+    testImplementation(group = "net.jadler", name = "jadler-all", version = "1.3.0")
+    // needed to force jetty8 for jadler
+    testImplementation(group = "org.eclipse.jetty.aggregate", name = "jetty-all-server", version = "8.1.11.v20130520")
 
     testRuntimeOnly(group = "org.junit.vintage", name = "junit-vintage-engine")
     testRuntimeOnly(group = "org.junit.jupiter", name = "junit-jupiter-engine")
