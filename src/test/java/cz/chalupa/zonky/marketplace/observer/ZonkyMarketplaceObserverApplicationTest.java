@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @ExtendWith(SpringExtension.class)
+@TestContext
 @SpringBootTest
 class ZonkyMarketplaceObserverApplicationTest {
 
